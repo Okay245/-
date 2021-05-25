@@ -48,7 +48,7 @@ export default {
 }
 .image {
   float: left;
-  height: 100px;
+  height: 200px;
 }
 
 .float_right {
