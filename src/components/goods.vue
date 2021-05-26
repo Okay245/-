@@ -44,7 +44,7 @@ export default {
 }
 
 .goods:hover {
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.2), 0 -10px 10px rgba(0, 0, 0, 0.2);
 }
 .image {
   float: left;
