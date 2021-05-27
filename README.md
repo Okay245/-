@@ -1,19 +1,16 @@
 # shoppingsystem
 
-## Project setup
+## 项目安装依赖
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 运行测试
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 编译打包(目前貌似有点小问题)
 ```
 npm run build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
