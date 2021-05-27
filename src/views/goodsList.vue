@@ -25,24 +25,25 @@ export default {
     };
     return {
       goodslist: Array(20).fill(good),
+      goodslist1: null,
     };
   },
   components: {
     goods,
   },
   created: function () {
-    console.log(123);
-    // request({
-    //   url: "",
-    //   method: "get",
-    // }).then(
-    //   (value) => {
-    //     console.log(value);
-    //   },
-    //   (reason) => {
-    //     console.log(reason);
-    //   }
-    // );
+    request({
+      url: "/home/multidata",
+      method: "get",
+    }).then(
+      (value) => {
+        console.log(value.data);
+        this.goodslist1 = value.data;
+      },
+      (reason) => {
+        console.log(reason);
+      }
+    );
   },
 };
 </script>
