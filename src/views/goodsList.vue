@@ -15,6 +15,7 @@
 
 <script>
 import goods from "../components/goods";
+import { request } from "../network/request";
 export default {
   data() {
     var good = {
@@ -28,6 +29,20 @@ export default {
   },
   components: {
     goods,
+  },
+  created: function () {
+    console.log(123);
+    // request({
+    //   url: "",
+    //   method: "get",
+    // }).then(
+    //   (value) => {
+    //     console.log(value);
+    //   },
+    //   (reason) => {
+    //     console.log(reason);
+    //   }
+    // );
   },
 };
 </script>

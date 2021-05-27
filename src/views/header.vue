@@ -26,7 +26,7 @@
       >
 
       <el-menu-item index="4" :style="{ float: 'right' }"
-        ><el-avatar :size="medium" :src="circleUrl"></el-avatar
+        ><el-avatar size="medium" :src="circleUrl"></el-avatar
       ></el-menu-item>
     </el-menu>
   </div>
