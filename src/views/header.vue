@@ -25,7 +25,7 @@
         >免费注册</el-menu-item
       >
 
-      <el-menu-item index="4" :style="{ float: 'right' }"
+      <el-menu-item index="4" :style="{ float: 'right' }" @click="skipLogin"
         ><el-avatar size="medium" :src="circleUrl"></el-avatar
       ></el-menu-item>
     </el-menu>
@@ -47,7 +47,11 @@ export default {
       search: "",
     };
   },
-  methods: {},
+  methods: {
+    skipLogin() {
+      this.$router.push("/login");
+    },
+  },
   created: function () {},
 };
 </script>
