@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import myHeader from "./header";
+import myHeader from "@/views/header";
 import carousel from "./carousel";
 import goodsList from "./goodsList";
 export default {
