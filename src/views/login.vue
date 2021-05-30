@@ -1,6 +1,10 @@
 <template>
-  <div id="container">
-    <div id="login">
+  <div id="container" :style="{ height: height + 'px' }">
+    <div
+      ref="login"
+      id="login"
+      :style="{ transform: 'rotate(' + lo_deg + 'deg)' }"
+    >
       <h2 class="title">登录</h2>
       <el-form
         ref="form"
@@ -21,9 +25,9 @@
           <el-button @click="skipRegister">还没注册</el-button>
         </el-form-item>
       </el-form>
-      <div id="register" :style="{ transform: 'rotate(90deg)' }">
-        <register></register>
-      </div>
+    </div>
+    <div id="register" :style="{ transform: 'rotate(' + re_deg + 'deg)' }">
+      <register @register="skipLogin"></register>
     </div>
   </div>
 </template>
@@ -33,6 +37,9 @@ import register from "./register";
 export default {
   data() {
     return {
+      lo_deg: 0,
+      re_deg: 90,
+      height: 0,
       form: {
         username: "",
         password: "",
@@ -50,7 +57,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$refs["from"].validate((valid) => {
+      this.$refs["form"].validate((valid) => {
         if (valid) {
           console.log("成功");
         } else {
@@ -58,7 +65,23 @@ export default {
         }
       });
     },
-    skipRegister() {},
+    skipRegister() {
+      let register = document.getElementById("register");
+      let height = getComputedStyle(register, null)["height"];
+      this.height = parseInt(height) + 2 + 6;
+      this.lo_deg -= 90;
+      this.re_deg -= 90;
+      let login = document.getElementById("login");
+      login.style.borderBottom = "none";
+    },
+    skipLogin() {
+      let login = document.getElementById("login");
+      login.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
+      let height = getComputedStyle(login, null)["height"];
+      this.height = parseInt(height) + 2 + 6;
+      this.lo_deg += 90;
+      this.re_deg += 90;
+    },
   },
   components: {
     register,
@@ -68,21 +91,31 @@ export default {
       return false;
     };
   },
+  mounted() {
+    let login = this.$refs["login"];
+    let height = getComputedStyle(login, null)["height"];
+    this.height = parseInt(height) + 2 + 6;
+  },
 };
 </script>
 
 <style scoped>
 #container {
   position: relative;
+  overflow: hidden;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 100px;
 }
 
 #login {
-  max-width: 500px;
-  margin: 0 auto;
-  margin-top: 200px;
+  width: calc(100% - 6px);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+  transform-origin: left bottom;
   transition: all 0.5s;
+  box-sizing: border-box;
+  margin: 3px;
 }
 
 #login:hover {
@@ -90,17 +123,28 @@ export default {
 }
 
 #login {
-  position: relative;
-  z-index: 0;
+  position: absolute;
 }
 #register {
-  width: 100%;
   position: absolute;
+}
+#register {
+  width: calc(100% - 6px);
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
   z-index: 1;
   left: 0;
-  bottom: 0;
+  top: 0;
   transform-origin: left bottom;
   transition: all 0.5s;
+  box-sizing: border-box;
+  margin: 3px;
+}
+
+#register:hover {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1), 0 -3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .title {

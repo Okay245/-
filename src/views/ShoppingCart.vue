@@ -149,15 +149,16 @@ export default {
       ],
     };
   },
-};
-
-var reduce = document.getElementsByClassName(".reduce");
-var add = document.getElementsByClassName(".add");
-reduce.onclick = function () {
-  this.num -= 1;
-};
-add.onclick = function () {
-  this.num += 1;
+  mounted() {
+    var reduce = document.getElementsByClassName(".reduce");
+    var add = document.getElementsByClassName(".add");
+    reduce.onclick = function () {
+      this.num -= 1;
+    };
+    add.onclick = function () {
+      this.num += 1;
+    };
+  },
 };
 </script>
 
@@ -165,5 +166,12 @@ add.onclick = function () {
 <style scoped>
 .el-container {
   height: 100%;
+}
+.el-header,
+.el-footer {
+  background-color: #b3c0d1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
 }
 </style>

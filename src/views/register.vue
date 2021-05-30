@@ -1,5 +1,5 @@
 <template>
-  <div class="register">
+  <div>
     <h2 class="title">注册</h2>
     <el-form
       ref="form"
@@ -18,9 +18,12 @@
       <el-form-item label="密码" prop="password">
         <el-input v-model="form.password" placeholder="6~16个字符"></el-input>
       </el-form-item>
+      <el-form-item label="密码" prop="password">
+        <el-input v-model="form.password" placeholder="6~16个字符"></el-input>
+      </el-form-item>
       <el-form-item>
         <el-button native-type="submit" type="primary">立即注册</el-button>
-        <el-button>马上登录</el-button>
+        <el-button @click="$emit('register')">马上登录</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -65,19 +68,6 @@ export default {
 </script>
 
 <style scoped>
-.register {
-  max-width: 500px;
-  margin: 0 auto;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  border-radius: 5px;
-  transition: all 0.5s;
-}
-
-.register1:hover {
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1), 0 -3px 5px rgba(0, 0, 0, 0.1);
-}
-
 .title {
   height: 40px;
   line-height: 40px;
