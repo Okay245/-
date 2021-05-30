@@ -23,10 +23,10 @@
       </el-input-number> -->
           <!-- <el-input-number v-model="num" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number> -->
           <template slot-scope="scope">
-            <button class="reduce">-</button>
+            <button @click="reduce(scope.row)">-</button>
             <span>{{ scope.row.num }}</span>
             <!-- scope指定范围，使用该范围内的num -->
-            <button class="add">+</button>
+            <button @click="add(scope.row)">+</button>
           </template>
         </el-table-column>
         <el-table-column prop="attribute" label="属性" width="170">
@@ -76,6 +76,14 @@ export default {
       //   amountChange() {
 
       //   }
+    },
+    add(row) {
+      row.num++;
+    },
+    reduce(row) {
+      if (row.num) {
+        row.num--;
+      }
     },
   },
   data() {
@@ -150,14 +158,14 @@ export default {
     };
   },
   mounted() {
-    var reduce = document.getElementsByClassName(".reduce");
-    var add = document.getElementsByClassName(".add");
-    reduce.onclick = function () {
-      this.num -= 1;
-    };
-    add.onclick = function () {
-      this.num += 1;
-    };
+    // var reduce = document.getElementsByClassName(".reduce");
+    // var add = document.getElementsByClassName(".add");
+    // reduce.onclick = function () {
+    //   this.num -= 1;
+    // };
+    // add.onclick = function () {
+    //   this.num += 1;
+    // };
   },
 };
 </script>
