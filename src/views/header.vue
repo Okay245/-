@@ -21,7 +21,7 @@
         ></el-input>
       </div>
 
-      <el-menu-item index="3" :style="{ float: 'right' }"
+      <el-menu-item index="3" :style="{ float: 'right' }" @click="skipLogin"
         >免费注册</el-menu-item
       >
 
