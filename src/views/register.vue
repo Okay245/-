@@ -4,7 +4,7 @@
     <el-form
       ref="form"
       :model="form"
-      label-width="80px"
+      label-width="100px"
       @submit.native.prevent="onSubmit"
       :rules="rules"
       :style="{ paddingRight: '50px' }"
@@ -32,6 +32,9 @@
       <el-form-item label="密码" prop="password">
         <el-input v-model="form.password" placeholder="6~16个字符"></el-input>
       </el-form-item>
+      <el-form-item label="确认密码" prop="pwdagain">
+        <el-input v-model="form.pwdagain" placeholder="6~16个字符"></el-input>
+      </el-form-item>
       <el-form-item>
         <el-button native-type="submit" type="primary">立即注册</el-button>
         <el-button @click="$emit('register')">马上登录</el-button>
@@ -44,23 +47,35 @@
 <script>
 export default {
   data() {
+    let checkPwd = (rule, value, callback) => {
+      console.log(rule);
+      if (!value) {
+        callback(new Error("确认密码不能为空!"));
+      } else if (value != this.form.password) {
+        callback(new Error("两次密码不一致!"));
+      } else {
+        callback();
+      }
+    };
+
     return {
       form: {
         username: "",
         sex: "",
         birthday: "",
         password: "",
+        pwdagain: "",
       },
       rules: {
         username: [
           { required: true, message: "用户名不能为空", trigger: "blur" },
-          { required: true, message: "", trigger: "blur" },
         ],
         sex: [{ required: true, message: "请选择性别", trigger: "blur" }],
         birthday: [{ required: true, message: "请选择日期", trigger: "blur" }],
         password: [
           { required: true, message: "密码不能为空", trigger: "blur" },
         ],
+        pwdagain: [{ required: true, validator: checkPwd, trigger: "blur" }],
       },
     };
   },
@@ -94,7 +109,7 @@ export default {
 .title {
   height: 40px;
   line-height: 40px;
-  padding-left: 80px;
+  padding-left: 100px;
   padding-bottom: 20px;
   padding-top: 20px;
   font-weight: 300;

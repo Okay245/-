@@ -29,6 +29,7 @@
             <button @click="add(scope.row)">+</button>
           </template>
         </el-table-column>
+
         <el-table-column prop="attribute" label="属性" width="170">
         </el-table-column>
         <el-table-column prop="shop" label="店铺" width="300">
