@@ -1,5 +1,6 @@
 <template>
   <div class="divlist">
+    <!-- 食品 -->
     <h3 class="title">
       <span class="t1">食品</span>
       <span class="t2">More<i class="el-icon-arrow-right"></i></span>
@@ -7,6 +8,26 @@
     <ul class="list clearfix" clipContent="false">
       <li v-for="(info, i) in goodslist" :key="i">
         <goods :style="{ marginRight: wrap(i + 1) }" v-bind="info"></goods>
+      </li>
+    </ul>
+    <!-- 手机 -->
+    <h3 class="title">
+      <span class="t1">手机</span>
+      <span class="t2">More<i class="el-icon-arrow-right"></i></span>
+    </h3>
+    <ul class="list clearfix" clipContent="false">
+      <li v-for="(info2, i) in goodslist2" :key="i">
+        <goods :style="{ marginRight: wrap(i + 1) }" v-bind="info2"></goods>
+      </li>
+    </ul>
+    <!-- 衣服 -->
+    <h3 class="title">
+      <span class="t1">衣服</span>
+      <span class="t2">More<i class="el-icon-arrow-right"></i></span>
+    </h3>
+    <ul class="list clearfix" clipContent="false">
+      <li v-for="(info3, i) in goodslist3" :key="i">
+        <goods :style="{ marginRight: wrap(i + 1) }" v-bind="info3"></goods>
       </li>
     </ul>
   </div>
@@ -17,14 +38,32 @@ import goods from "../components/goods";
 import { request } from "../network/request";
 export default {
   data() {
-    var good = {
+    let good = {
       name: "汉堡包",
       price: 10,
       number: 100,
+      picurl:
+        "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
+    };
+
+    let good2 = {
+      name: "苹果12",
+      price: 1999,
+      number: 5000,
+      picurl:
+        "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/61454401f855cf5ed64747a6ac04bae5.jpg?thumb=1&w=200&h=200&f=webp&q=90",
+    };
+    let good3 = {
+      name: "女装",
+      price: 688,
+      number: 182,
+      picurl:
+        "https://img.alicdn.com/imgextra/i4/103981365/O1CN012Rep4q1LxDJQJWZ5H_!!0-saturn_solar.jpg_468x468q75.jpg_.webp",
     };
     return {
-      goodslist: Array(17).fill(good),
-      goodslist1: null,
+      goodslist: Array(10).fill(good),
+      goodslist2: Array(10).fill(good2),
+      goodslist3: Array(10).fill(good3),
     };
   },
   methods: {

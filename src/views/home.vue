@@ -2,7 +2,7 @@
   <div class="home">
     <el-container>
       <!-- 头部导航 -->
-      <el-header class="myheader">
+      <el-header style="height: ''">
         <my-header></my-header>
       </el-header>
       <!-- 轮播图 -->

@@ -1,10 +1,7 @@
 <template>
   <div class="goods">
     <div class="divimage">
-      <img
-        src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-        class="image"
-      />
+      <img :src="picurl" class="image" />
     </div>
 
     <div class="content">
@@ -18,7 +15,9 @@
       <el-button size="mini" style="display: block; margin: 0 auto"
         >购买</el-button
       >
-      <p class="data">上架时间:{{ currentDate }}</p>
+      <p class="data">
+        <span>上架时间:{{ currentDate }}</span>
+      </p>
     </div>
   </div>
 </template>
@@ -29,6 +28,7 @@ export default {
     name: String,
     price: Number,
     number: Number,
+    picurl: String,
   },
   data() {
     return {
@@ -38,7 +38,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .goods {
   width: 220px;
   height: 300px;
@@ -79,7 +79,7 @@ export default {
   height: 20px;
   line-height: 20px;
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 300;
   color: #333;
   margin: 10px 0;
