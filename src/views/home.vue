@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="home">
     <el-container>
       <!-- 头部导航 -->
-      <el-header class="myheader">
+      <el-header style="height: ''">
         <my-header></my-header>
       </el-header>
       <!-- 轮播图 -->
@@ -10,7 +10,7 @@
         <carousel></carousel>
       </el-main>
       <!-- 商品列表 -->
-      <el-main>
+      <el-main class="mymain2">
         <goods-list></goods-list>
       </el-main>
       <router-view></router-view>
@@ -33,7 +33,15 @@ export default {
 
 <style scoped>
 .mymain1 {
-  background-color: rgb(137, 185, 189);
+  width: 1200px;
+  background-color: rgba(38, 17, 231, 0.1);
+  margin: 0 auto;
+}
+
+.mymain2 {
+  background-color: #f5f5f5;
+  padding: 0;
+  overflow: visible;
 }
 
 .el-header {
