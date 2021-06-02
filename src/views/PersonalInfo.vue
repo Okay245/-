@@ -1,7 +1,7 @@
 <template>
   <el-container class="outer-con">
-    <el-header>
-      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+    <!-- <el-header>
+      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router="true" @select="handleSelect">
         <el-menu-item class="el-menu-demo-item" index="1">首页</el-menu-item>
         <el-submenu index="2">
         <template class="el-menu-demo-item" slot="title">我的</template>
@@ -16,43 +16,45 @@
         <el-menu-item class="el-menu-demo-item" index="3">
            消息
         </el-menu-item>
-        <el-menu-item class="el-menu-demo-item" index="../shoppingCart">
-          <!-- <a href="https://www.ele.me" target="_blank"></a> -->
+        <el-menu-item class="el-menu-demo-item"  index="/shoppingCart">
+          
           <i class="el-icon-shopping-cart-1"></i>购物车
         </el-menu-item>
       </el-menu>
-    </el-header>
+    </el-header> -->
+
+
    <el-container>
-      <el-aside width="200px">
+      <!-- <el-aside width="200px">
         <el-row class="demo-avatar demo-basic">
-        <!-- <el-col :span="12"> -->
+        
           <div class="demo-basic--circle">
            <div class="block">
-            <el-avatar class="head" :size="150" :src="circleUrl"></el-avatar>
+             <el-avatar class="head" :size="150" :src="circleUrl"></el-avatar>
            </div>
-           
-           <!-- <span class="sub-title">userName</span> -->
           </div>
+
           <span class="user-name">userName</span>
-        <!-- </el-col>  -->
         </el-row>
-      </el-aside>
+      </el-aside> -->
+
+      <!-- <CorrectInfo></CorrectInfo> -->
       <el-container>
        <el-main>
-  <table class="el-table"  :data="tableData" stripe style="width: 100%">
-    <!-- <i class="el-icon-user"></i> -->
-    <div class="el-table-row" prop="userName" label="用户名" width="180">用户名 :{{userName}}
-    </div>
-    <div class="el-table-row" prop="account" label="账号" width="180">账号 :
-    </div>
-    <div class="el-table-row" prop="consignee" label="收货人" width="180">收货人 :
-    </div>
-    <div class="el-table-row" prop="phoneNumber" label="手机号" width="180">手机号 :
-    </div>
-    <div class="el-table-row" prop="address" label="收货地址" width="180">收货地址 :
-    </div>
-  </table>
-       </el-main>
+          <table class="el-table"  :data="tableData" stripe style="width: 100%">
+          <!-- <i class="el-icon-user"></i> -->
+          <div class="el-table-row" prop="userName" label="用户名" width="180">用户名 :{{userName}}
+          </div>
+          <div class="el-table-row" prop="account" label="账号" width="180">账号 :
+          </div>
+          <div class="el-table-row" prop="consignee" label="收货人" width="180">收货人 :
+          </div>
+          <div class="el-table-row" prop="phoneNumber" label="手机号" width="180">手机号 :
+          </div>
+          <div class="el-table-row" prop="address" label="收货地址" width="180">收货地址 :
+          </div>
+          </table>
+        </el-main>
        <!-- <el-footer>
         Footer
        </el-footer> -->
@@ -62,7 +64,14 @@
 </template>
 
 <script>
+// import personalIndexVue from './personalIndex.vue'
+// import CorrectInfo from './CorrectInfo'
+  
   export default {
+    // components:{
+    //   CorrectInfo,
+    // },
+    
     // data () {
     //   return {
     //     circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
@@ -82,7 +91,7 @@
       }
     }
   }
-  
+
 </script>
 
 

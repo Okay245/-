@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-menu :default-active="activeIndex" mode="horizontal" class="myheader">
+    <el-menu :default-active="activeIndex" mode="horizontal" class="myheader" router="true">
       <el-image
         style="
           float: left;
@@ -14,7 +14,7 @@
       ></el-image>
 
       <el-menu-item index="1">首页</el-menu-item>
-      <el-menu-item index="./views/ShoppingCart.vue">购物车</el-menu-item>
+      <el-menu-item index="/shoppingCart">购物车</el-menu-item>
       <div class="search">
         <el-input v-model="search" placeholder="请输入关键字"
           ><el-button slot="append" icon="el-icon-search"></el-button
