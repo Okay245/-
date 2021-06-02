@@ -26,16 +26,9 @@
           </template>
         </el-table-column>
 
-<<<<<<< HEAD
         <el-table-column prop="attribute" label="属性" width="170"></el-table-column>
         <el-table-column prop="shop" label="店铺" width="300"></el-table-column>
 
-=======
-        <el-table-column prop="attribute" label="属性" width="170">
-        </el-table-column>
-        <el-table-column prop="shop" label="店铺" width="300">
-        </el-table-column>
->>>>>>> 5ac9006fe33ab2281a995f7593edaf93305a13c4
         <el-table-column fixed="right" label="操作" width="200">
           <template slot-scope="scope">
             <el-button

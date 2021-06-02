@@ -6,8 +6,8 @@
       <!-- 默认打开的导航栏 -->
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-message"></i>我</template>
-          <el-menu-item index="1-3" class="tab" @cllick="toggleTab('personalInfo')">个人信息</el-menu-item>
-          <el-menu-item index="1-3" class="tab" @cllick="toggleTab('correctInfo')">修改信息</el-menu-item>
+          <el-menu-item index="1-3" @click="toggleTab('PersonalInfo')">个人信息</el-menu-item>
+          <el-menu-item index="1-4" @click="toggleTab('CorrectInfo')">修改信息</el-menu-item>
           <!-- 每一个tab绑定一个点击事件，分别传入更改的组件名为参数 -->
       </el-submenu>
 
@@ -68,18 +68,10 @@
       </span>
     </el-header>
     
-    
-    <personalInfo :is="currentTab" keep-alive></personalInfo>
-
-      <el-table :data="tableData">
-        <el-table-column prop="date" label="日期" width="140">
-        </el-table-column>
-        <el-table-column prop="name" label="姓名" width="120">
-        </el-table-column>
-        <el-table-column prop="address" label="地址">
-        </el-table-column>
-      </el-table>
-    
+    <keep-alive>
+      <component v-bind:is="currentTabComponent"></component>
+    </keep-alive>
+        
     </el-container>
   </el-container>
 </template>
@@ -91,7 +83,7 @@ import CorrectInfo from './CorrectInfo'
 export default {
   components:{           //声明子组件
     PersonalInfo,
-    CorrectInfo
+    CorrectInfo,
   },
   data() {
       const item = {
@@ -100,13 +92,21 @@ export default {
         address: '上海市普陀区金沙江路 1518 弄'
       };
       return {
-        tableData: Array(10).fill(item),
-        currentTab:'personalInfo'
+        currentTabComponent: PersonalInfo
       }
   },
   methods:{
     toggleTab(tab) {
-      this.currentTab = tab;   //tab为当前触发标签页的组件名
+      
+      // this.currentTabComponent = tab;   //tab为当前触发标签页的组件名
+      if(tab == "PersonalInfo") {
+        this.currentTabComponent = PersonalInfo;
+        console.log(tab);
+      }
+      else if(tab=="CorrectInfo"){
+        this.currentTabComponent = CorrectInfo;
+        console.log(tab);
+      }
     }
   }
 }

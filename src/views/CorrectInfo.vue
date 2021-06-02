@@ -1,4 +1,5 @@
 <template>
+<container class="body">
   <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
   <el-form-item label="用户名" prop="name">
     <el-input v-model="ruleForm.name"></el-input>
@@ -53,7 +54,7 @@
     <el-button @click="resetForm('ruleForm')">重置</el-button>
   </el-form-item>
 </el-form>
-
+</container>
 </template>
 
 <script>
@@ -120,3 +121,14 @@ import Position from './positionChosing.vue'
   }
 </script>
 
+<style scoped>
+  /* * {
+    padding:20px;
+  } */
+  
+  .body{
+    padding-top: 50px;
+    padding-left:30px;
+  }
+
+</style>

@@ -1,45 +1,6 @@
 <template>
   <el-container class="outer-con">
-    <!-- <el-header>
-      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router="true" @select="handleSelect">
-        <el-menu-item class="el-menu-demo-item" index="1">首页</el-menu-item>
-        <el-submenu index="2">
-        <template class="el-menu-demo-item" slot="title">我的</template>
-          <el-menu-item index="2-1">买过</el-menu-item>
-          <el-menu-item index="2-2">足迹</el-menu-item>
-          <el-submenu index="2-4">
-            <template slot="title">收藏</template>
-              <el-menu-item index="2-4-1">宝贝</el-menu-item>
-              <el-menu-item index="2-4-2">店铺</el-menu-item>
-          </el-submenu>
-        </el-submenu>
-        <el-menu-item class="el-menu-demo-item" index="3">
-           消息
-        </el-menu-item>
-        <el-menu-item class="el-menu-demo-item"  index="/shoppingCart">
-          
-          <i class="el-icon-shopping-cart-1"></i>购物车
-        </el-menu-item>
-      </el-menu>
-    </el-header> -->
-
-
-   <el-container>
-      <!-- <el-aside width="200px">
-        <el-row class="demo-avatar demo-basic">
-        
-          <div class="demo-basic--circle">
-           <div class="block">
-             <el-avatar class="head" :size="150" :src="circleUrl"></el-avatar>
-           </div>
-          </div>
-
-          <span class="user-name">userName</span>
-        </el-row>
-      </el-aside> -->
-
-      <!-- <CorrectInfo></CorrectInfo> -->
-      <el-container>
+   
        <el-main>
           <table class="el-table"  :data="tableData" stripe style="width: 100%">
           <!-- <i class="el-icon-user"></i> -->
@@ -58,26 +19,12 @@
        <!-- <el-footer>
         Footer
        </el-footer> -->
-      </el-container>
-   </el-container>
+      
   </el-container>
 </template>
 
-<script>
-// import personalIndexVue from './personalIndex.vue'
-// import CorrectInfo from './CorrectInfo'
-  
+<script>  
   export default {
-    // components:{
-    //   CorrectInfo,
-    // },
-    
-    // data () {
-    //   return {
-    //     circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
-    //     sizeList: ["large", "medium", "small"]
-    //  }
-    // }
     data() {
       return {
         tableData: [{ 
@@ -129,8 +76,8 @@
   }
 
   .block {
-    padding:20px;
-    padding-top: 50px;
+    /* padding:20px; */
+    /* padding-top: 50px; */
     margin: 0px;
     height: 150px;
   }
@@ -148,7 +95,7 @@
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 160px;
+    line-height: 120px;
   }
 
   /* .el-table {

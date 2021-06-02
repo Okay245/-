@@ -2,7 +2,7 @@
   <el-container>
     <el-header>
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router="true" @select="handleSelect">
-        <el-menu-item class="el-menu-demo-item" index="1">首页</el-menu-item>
+        <el-menu-item class="el-menu-demo-item" index="/">首页</el-menu-item>
         <el-submenu index="2">
         <template class="el-menu-demo-item" slot="title">我的</template>
           <el-menu-item index="2-1">买过</el-menu-item>
@@ -23,64 +23,64 @@
       </el-menu>
     </el-header>
 
-    <el-main style="text-align:">
-      <div class="block">
-        <span class="demonstration">Click 指示器触发</span>
-        
-
-        <el-carousel trigger="click" height="150px" autoplay="false">
+    <el-main style="">
+      <intro class="intro">
+      <span class="block">
+        <el-carousel trigger="click" height="600px" style="width:400px">
           <el-carousel-item v-for="item in 4" :key="item">
             <h3 class="small">{{ item }}</h3>
           </el-carousel-item>
         </el-carousel>
-      </div>
+      </span>
 
-      <template>
-        <el-form ref="form" :model="sizeForm" label-width="80px" size="mini">
-          <el-form-item label="活动名称">
-            <el-input v-model="sizeForm.name"></el-input>
+      <span>
+        <el-form ref="form" :model="sizeForm" label-width="80px" size="">
+
+          <div style="text-align:center; padding-bottom:30px"><h1>{{ title }}</h1></div>
+
+          <el-form-item prop="price" label="价格："></el-form-item>
+          
+          <el-form-item size="mini" prop="remain" label="剩余："></el-form-item>
+          <el-form-item size="mini" prop="saleAmount" label="月销量："></el-form-item>
+
+          <el-form-item label="尺码">
+            <el-radio-group v-model="sizeForm.type">
+              <el-radio-button label="S" name="type"></el-radio-button>
+              <el-radio-button label="M" name="type"></el-radio-button>
+              <el-radio-button label="L" name="type"></el-radio-button>
+              <el-radio-button label="XL" name="type"></el-radio-button>
+            </el-radio-group>
           </el-form-item>
 
-        <el-form-item label="活动区域">
-          <el-select v-model="sizeForm.region" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
-        </el-form-item>
+          <el-form-item label="颜色">
+            <el-radio-group v-model="sizeForm.type">
+              <el-radio-button label="黑色" name="type"></el-radio-button>
+              <el-radio-button label="白色" name="type"></el-radio-button>
+              <el-radio-button label="米色" name="type"></el-radio-button>
+              <el-radio-button label="墨绿色" name="type"></el-radio-button>
+            </el-radio-group>
+          </el-form-item>
 
-        <el-form-item label="活动时间">
-          <el-col :span="11">
-            <el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.date1" style="width: 100%;"></el-date-picker>
-            </el-col>
-          <el-col class="line" :span="2">-</el-col>
-          <el-col :span="11">
-            <el-time-picker placeholder="选择时间" v-model="sizeForm.date2" style="width: 100%;"></el-time-picker>
-          </el-col>
-        </el-form-item>
+          <el-form-item label="服务">
+            <el-radio-group v-model="sizeForm.resource" size="medium">
+              <el-radio border label="直接付款"></el-radio>
+              <el-radio border label="分期付款"></el-radio>
+            </el-radio-group>
+          </el-form-item>
 
-        <el-form-item label="活动性质">
-          <el-checkbox-group v-model="sizeForm.type">
-            <el-checkbox-button label="美食/餐厅线上活动" name="type"></el-checkbox-button>
-            <el-checkbox-button label="地推活动" name="type"></el-checkbox-button>
+          <el-form-item size="large">
+            <el-button type="primary" @click="onSubmit">立即购买</el-button>
+            <el-button>加入购物车</el-button>
+          </el-form-item>
+        </el-form>
+    </span>
+    </intro>
 
-            <el-checkbox-button label="线下主题活动" name="type"></el-checkbox-button>
-          </el-checkbox-group>
-        </el-form-item>
-
-        <el-form-item label="特殊资源">
-          <el-radio-group v-model="sizeForm.resource" size="medium">
-            <el-radio border label="线上品牌商赞助"></el-radio>
-            <el-radio border label="线下场地免费"></el-radio>
-          </el-radio-group>
-        </el-form-item>
-
-        <el-form-item size="large">
-          <el-button type="primary" @click="onSubmit">立即创建</el-button>
-          <el-button>取消</el-button>
-        </el-form-item>
-      </el-form>
-    </template>
-
+    <div class="details">
+      <img src="" alt="">
+      <img src="" alt="">
+      <img src="" alt="">
+    </div>
 
     </el-main>
   </el-container>
@@ -91,6 +91,7 @@
     export default {
     data() {
       return {
+        title:'title',
         sizeForm: {
           name: '',
           region: '',
@@ -134,5 +135,14 @@
   
   .el-carousel__item:nth-child(2n+1) {
      background-color: #d3dce6;
+  }
+
+  .intro{
+    display: flex;
+    justify-content: center;
+  }
+
+  .intro .block{
+    padding-right: 100px;
   }
 </style>
