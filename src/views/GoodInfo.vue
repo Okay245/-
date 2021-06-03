@@ -2,10 +2,9 @@
   <el-container>
     <el-header>
       <el-menu
-        :default-active="activeIndex"
         class="el-menu-demo"
         mode="horizontal"
-        router="true"
+        router
         @select="handleSelect"
       >
         <el-menu-item class="el-menu-demo-item" index="/">首页</el-menu-item>
@@ -27,7 +26,7 @@
     </el-header>
 
     <el-main style="">
-      <intro class="intro">
+      <div class="intro">
         <span class="block">
           <el-carousel trigger="click" height="600px" style="width: 400px">
             <el-carousel-item v-for="item in 4" :key="item">
@@ -87,11 +86,12 @@
 
             <el-form-item size="large">
               <el-button type="primary" @click="onSubmit">立即购买</el-button>
+              {{ $route.query }}
               <el-button>加入购物车</el-button>
             </el-form-item>
           </el-form>
         </span>
-      </intro>
+      </div>
 
       <div class="details">
         <img src="" alt="" />
@@ -106,6 +106,7 @@
 export default {
   data() {
     return {
+      activeIndex: "2",
       num: 1,
       title: "title",
       price: "1000",
@@ -125,6 +126,7 @@ export default {
     onSubmit() {
       console.log("submit!");
     },
+    handleSelect() {},
   },
 };
 </script>

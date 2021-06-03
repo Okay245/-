@@ -1,5 +1,5 @@
 <template>
-  <div class="goods" @click="skipToDetails()">
+  <div class="goods">
     <div class="divimage">
       <img :src="picurl" class="image" />
     </div>
@@ -15,7 +15,7 @@
       <el-button
         size="mini"
         style="display: block; margin: 0 auto"
-        @click="skipGood"
+        @click="skipToDetails"
         >购买</el-button
       >
       <p class="data">
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     skipToDetails() {
-      this.$router.push("/goodInfo");
+      this.$router.push({ path: "/goodinfo", query: { name: this.name } });
     },
   },
 };

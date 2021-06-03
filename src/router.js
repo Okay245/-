@@ -17,17 +17,17 @@ export default new Router({
             import('./views/login.vue'),
     },
     {
-        path: '/personalIndex',
+        path: '/personal',
         component: () =>
             import('./views/PersonalIndex.vue')
     },
     {
-        path: '/shoppingCart',
+        path: '/shoppingcart',
         component: () =>
             import('./views/ShoppingCart.vue')
     },
     {
-        path: '/goodInfo',
+        path: '/goodinfo',
         component: () =>
             import('./views/GoodInfo.vue')
     }

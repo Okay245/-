@@ -3,11 +3,16 @@
     <div class="nav">
       <ul>
         <li><span>首页</span></li>
-        <li><span @click="skipToCart()">购物车</span></li>
+        <li><span @click="skipToCart">购物车</span></li>
       </ul>
     </div>
     <div class="navtoo">
-      <el-menu :default-active="activeIndex" mode="horizontal" class="myheader" router="true">
+      <el-menu
+        :default-active="activeIndex"
+        mode="horizontal"
+        class="myheader"
+        router
+      >
         <el-image
           style="
             float: left;
@@ -21,18 +26,18 @@
         ></el-image>
 
         <el-menu-item index="/">首页</el-menu-item>
-        <el-menu-item index="/shoppingCart">购物车</el-menu-item>
+        <el-menu-item index="/shoppingcart">购物车</el-menu-item>
         <div class="search">
           <el-input v-model="search" placeholder="请输入关键字"
             ><el-button slot="append" icon="el-icon-search"></el-button
           ></el-input>
         </div>
 
-        <el-menu-item index="3" :style="{ float: 'right' }" @click="skipLogin"
+        <el-menu-item index="/login" :style="{ float: 'right' }"
           >免费注册</el-menu-item
         >
 
-        <el-menu-item index="4" :style="{ float: 'right' }" @click="skipLogin"
+        <el-menu-item index="/login" :style="{ float: 'right' }"
           ><el-avatar size="medium" :src="circleUrl"></el-avatar
         ></el-menu-item>
       </el-menu>
@@ -44,7 +49,7 @@
 export default {
   data() {
     return {
-      activeIndex: "1",
+      activeIndex: "/",
       circleUrl:
         "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
       squareUrl:
@@ -56,12 +61,12 @@ export default {
     };
   },
   methods: {
-    skipLogin() {
-      this.$router.push("/login");
-    },
+    // skipLogin() {
+    //   this.$router.push("/login");
+    // },
     skipToCart() {
-      this.$router.push("/shoppingCart")
-    }
+      this.$router.push("/shoppingcart");
+    },
   },
   created: function () {},
 };

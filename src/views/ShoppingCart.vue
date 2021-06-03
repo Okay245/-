@@ -1,45 +1,55 @@
 <template>
   <el-container class="el-container">
-
     <el-header><i class="el-icon-shopping-cart-1"></i> 购物车</el-header>
 
     <el-main class="el-main">
-
       <el-table class="el-table" :data="tableData" style="width: 100%" fit>
-
         <el-table-column fixed width="150">
-            <el-checkbox v-model="checkList">get√</el-checkbox>
+          <el-checkbox v-model="checkList">get√</el-checkbox>
         </el-table-column>
 
-        <el-table-column prop="name" label="商品名称" width="280"></el-table-column>
-        <el-table-column prop="price" label="价格" width="150"></el-table-column>
+        <el-table-column
+          prop="name"
+          label="商品名称"
+          width="280"
+        ></el-table-column>
+        <el-table-column
+          prop="price"
+          label="价格"
+          width="150"
+        ></el-table-column>
 
         <el-table-column prop="amount" label="数量" width="200">
           <!-- <el-input-number v-model="num" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number> -->
           <template slot-scope="scope">
             <!-- <button class="reduce" @click="reduce(scope.row)">-</button> -->
             <el-button @click="reduce(scope.row)">-</el-button>
-            <input type="text" class="amountSpan" v-model="scope.row.num" :min=0>
+            <input
+              type="text"
+              class="amountSpan"
+              v-model="scope.row.num"
+              :min="0"
+            />
             <!-- scope指定范围，使用该范围内的num -->
             <!-- <button class="add" @click="add(scope.row)">+</button> -->
             <el-button @click="add(scope.row)">+</el-button>
           </template>
         </el-table-column>
 
-<<<<<<< HEAD
-        <el-table-column prop="attribute" label="属性" width="170">
-        </el-table-column>
-        <el-table-column prop="shop" label="店铺" width="300">
-        </el-table-column>
-=======
-        <el-table-column prop="attribute" label="属性" width="170"></el-table-column>
+        <el-table-column
+          prop="attribute"
+          label="属性"
+          width="170"
+        ></el-table-column>
         <el-table-column prop="shop" label="店铺" width="300"></el-table-column>
 
->>>>>>> 16d08a009c20fdd949ffc72e93b74e2a80266449
         <el-table-column fixed="right" label="操作" width="200">
           <template slot-scope="scope">
             <el-button
-              @click.native.prevent="deleteRow(scope.$index, tableData)" type="text" size="small">
+              @click.native.prevent="deleteRow(scope.$index, tableData)"
+              type="text"
+              size="small"
+            >
               移除
             </el-button>
           </template>
@@ -57,10 +67,8 @@
 </template>
 
 <script>
-
 export default {
   methods: {
-    checked:false,
     deleteRow(index, rows) {
       rows.splice(index, 1);
     },
@@ -76,6 +84,7 @@ export default {
         row.num--;
       }
     },
+    checkList() {},
   },
   data() {
     return {
@@ -149,15 +158,15 @@ export default {
     };
   },
   //mounted() {
-    // var reduce = document.getElementsByClassName(".reduce");
-    // var add = document.getElementsByClassName(".add");
-    // reduce.onclick = function () {
-    //   this.num -= 1;
-    // };
-    // add.onclick = function () {
-    //   this.num += 1;
-    // };
-    //},
+  // var reduce = document.getElementsByClassName(".reduce");
+  // var add = document.getElementsByClassName(".add");
+  // reduce.onclick = function () {
+  //   this.num -= 1;
+  // };
+  // add.onclick = function () {
+  //   this.num += 1;
+  // };
+  //},
 };
 </script>
 
@@ -173,11 +182,11 @@ export default {
   text-align: center;
   line-height: 60px;
 }
-.el-main{
+.el-main {
   height: 100%;
 }
 
-.amountSpan{
+.amountSpan {
   /* background-color: aqua; */
   /* display: inline-block; */
   width: 55px;
@@ -185,8 +194,7 @@ export default {
   text-align: center;
 }
 
-input[type=text]{
-  border-color:#dcdfe6;
+input[type="text"] {
+  border-color: #dcdfe6;
 }
-
 </style>
