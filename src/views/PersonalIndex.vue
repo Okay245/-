@@ -15,7 +15,6 @@
           <!-- 每一个tab绑定一个点击事件，分别传入更改的组件名为参数 -->
         </el-submenu>
 
-<<<<<<< HEAD
         <el-submenu index="2">
           <template slot="title"><i class="el-icon-menu"></i>收藏</template>
           <!-- <el-menu-item-group>
@@ -31,18 +30,6 @@
             <el-menu-item index="2-4-1">收藏的店铺</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
-=======
-      <el-submenu index="2">
-        <template slot="title"><i class="el-icon-menu"></i>收藏</template>
-        <el-menu-item-group>
-          <el-menu-item index="2-3">收藏的商品</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group index="2-4">
-          <el-menu-item index="2-4-1">收藏的店铺</el-menu-item>
-        </el-menu-item-group>
-        
-      </el-submenu>
->>>>>>> 5583852478cc08d893e3a973a64bfa06d5c7e6db
 
         <el-submenu index="3">
           <template slot="title"><i class="el-icon-setting"></i>历史</template>
@@ -111,7 +98,6 @@ export default {
     CorrectInfo,
   },
   data() {
-<<<<<<< HEAD
     const item = {
       date: "2016-05-02",
       name: "王小虎",
@@ -120,29 +106,16 @@ export default {
     return {
       currentTabComponent: PersonalInfo,
     };
-=======
-      return {
-        currentTabComponent: PersonalInfo
-      }
->>>>>>> 5583852478cc08d893e3a973a64bfa06d5c7e6db
   },
   methods: {
     toggleTab(tab) {
-<<<<<<< HEAD
       // this.currentTabComponent = tab;   //tab为当前触发标签页的组件名
       if (tab == "PersonalInfo") {
         this.currentTabComponent = PersonalInfo;
         console.log(tab);
       } else if (tab == "CorrectInfo") {
-=======
-      if(tab == "PersonalInfo") {
-        this.currentTabComponent = PersonalInfo;  //tab为当前触发标签页的组件名
-        // console.log(tab);
-      }
-      else if(tab=="CorrectInfo"){
->>>>>>> 5583852478cc08d893e3a973a64bfa06d5c7e6db
         this.currentTabComponent = CorrectInfo;
-        // console.log(tab);
+        console.log(tab);
       }
     },
   },
