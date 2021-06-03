@@ -7,6 +7,7 @@ export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [{
+<<<<<<< HEAD
         path: '/',
         component: () =>
             import('./views/home.vue')
@@ -38,5 +39,31 @@ export default new Router({
         component: () =>
             import('./views/ShoppingCart.vue')
     }
+=======
+            path: '/',
+            component: () =>
+                import ('./views/home.vue')
+        },
+        {
+            path: '/login',
+            component: () =>
+                import ('./views/login.vue'),
+        },
+        {
+            path: '/personalIndex',
+            component: () =>
+                import ('./views/PersonalIndex.vue')
+        },
+        {
+            path: '/shoppingCart',
+            component: () =>
+                import ('./views/ShoppingCart.vue')
+        },
+        {
+            path: '/goodInfo',
+            component: () =>
+                import ('./views/GoodInfo.vue')
+        }
+>>>>>>> 5583852478cc08d893e3a973a64bfa06d5c7e6db
     ]
 })

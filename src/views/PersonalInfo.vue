@@ -1,5 +1,6 @@
 <template>
   <el-container class="outer-con">
+<<<<<<< HEAD
     <el-main>
       <table class="el-table" :data="tableData" stripe style="width: 100%">
         <!-- <i class="el-icon-user"></i> -->
@@ -47,6 +48,41 @@ export default {
     };
   },
 };
+=======
+   
+       <el-main>
+          <table class="el-table"  :data="tableData" stripe style="width: 100%">
+          <!-- <i class="el-icon-user"></i> -->
+          <div class="el-table-row" label="用户名" >用户名 : {{userName}}
+          </div>
+          <div class="el-table-row" label="账号">账号 : {{account}}
+          </div>
+          <div class="el-table-row" label="收货人">收货人 : {{consignee}}
+          </div>
+          <div class="el-table-row" label="手机号">手机号 : {{phoneNumber}}
+          </div>
+          <div class="el-table-row" label="收货地址">收货地址 : {{address}}
+          </div>
+          </table>
+        </el-main>
+  
+  </el-container>
+</template>
+
+<script>  
+  export default {
+    data() {
+      return {
+          userName:'Tom',
+          account:'135135135',
+          consignee:'TT',
+          phoneNumber:'1122334455',
+          address:'...',
+      }
+    }
+  }
+
+>>>>>>> 5583852478cc08d893e3a973a64bfa06d5c7e6db
 </script>
 
 

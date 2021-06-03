@@ -1,5 +1,5 @@
 <template>
-  <div class="goods">
+  <div class="goods" @click="skipToDetails()">
     <div class="divimage">
       <img :src="picurl" class="image" />
     </div>
@@ -39,8 +39,8 @@ export default {
     };
   },
   methods: {
-    skipGood() {
-      this.$router.push({ path: "/good", query: { name: this.name } });
+    skipToDetails() {
+      this.$router.push("/goodInfo");
     },
   },
 };
