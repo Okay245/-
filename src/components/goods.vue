@@ -12,7 +12,10 @@
       <p>
         <span>价格:{{ price }}元</span>
       </p>
-      <el-button size="mini" style="display: block; margin: 0 auto"
+      <el-button
+        size="mini"
+        style="display: block; margin: 0 auto"
+        @click="skipGood"
         >购买</el-button
       >
       <p class="data">
@@ -34,6 +37,11 @@ export default {
     return {
       currentDate: new Date().toDateString(),
     };
+  },
+  methods: {
+    skipGood() {
+      this.$router.push({ path: "/good", query: { name: this.name } });
+    },
   },
 };
 </script>
