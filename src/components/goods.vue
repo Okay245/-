@@ -28,6 +28,7 @@
 <script>
 export default {
   props: {
+    id: Number,
     name: String,
     price: Number,
     number: Number,
@@ -40,7 +41,20 @@ export default {
   },
   methods: {
     skipToDetails() {
-      this.$router.push({ path: "/goodinfo", query: { name: this.name } });
+      this.$router.push({
+        name: "goodinfo",
+        path: "/goodinfo",
+        params: {
+          name: this.name,
+          price: this.price,
+          number: this.number,
+          picurl: this.picurl,
+        },
+        query: {
+          id: this.id,
+          name: this.name,
+        },
+      });
     },
   },
 };

@@ -39,6 +39,7 @@ import { request } from "../network/request";
 export default {
   data() {
     let good = {
+      id: 1,
       name: "汉堡包",
       price: 10,
       number: 100,
@@ -47,6 +48,7 @@ export default {
     };
 
     let good2 = {
+      id: 2,
       name: "苹果12",
       price: 1999,
       number: 5000,
@@ -54,6 +56,7 @@ export default {
         "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/61454401f855cf5ed64747a6ac04bae5.jpg?thumb=1&w=200&h=200&f=webp&q=90",
     };
     let good3 = {
+      id: 3,
       name: "女装",
       price: 688,
       number: 182,

@@ -27,6 +27,7 @@ export default new Router({
             import('./views/ShoppingCart.vue')
     },
     {
+        name: "goodinfo",
         path: '/goodinfo',
         component: () =>
             import('./views/GoodInfo.vue')

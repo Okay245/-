@@ -38,12 +38,14 @@
         <span>
           <el-form ref="form" :model="sizeForm" label-width="80px" size="">
             <div style="text-align: center; padding-bottom: 30px">
-              <h1>{{ title }}</h1>
+              <h1>{{ data.name }}</h1>
             </div>
 
-            <el-form-item label="价格：">{{ price }}</el-form-item>
+            <el-form-item label="价格：">{{ data.price }}</el-form-item>
 
-            <el-form-item size="mini" label="剩余：">{{ remain }}</el-form-item>
+            <el-form-item size="mini" label="剩余：">{{
+              data.number
+            }}</el-form-item>
             <el-form-item size="mini" label="月销量：">{{
               saleAmount
             }}</el-form-item>
@@ -86,7 +88,6 @@
 
             <el-form-item size="large">
               <el-button type="primary" @click="onSubmit">立即购买</el-button>
-              {{ $route.query }}
               <el-button>加入购物车</el-button>
             </el-form-item>
           </el-form>
@@ -106,11 +107,13 @@
 export default {
   data() {
     return {
+      data: {
+        name: "加载中",
+        price: 0,
+        number: 0,
+      },
       activeIndex: "2",
       num: 1,
-      title: "title",
-      price: "1000",
-      remain: "1000000",
       saleAmount: "1",
       sizeForm: {
         size: "",
@@ -127,6 +130,11 @@ export default {
       console.log("submit!");
     },
     handleSelect() {},
+  },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.data = vm.$route.params;
+    });
   },
 };
 </script>
