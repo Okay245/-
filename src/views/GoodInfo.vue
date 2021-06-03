@@ -38,13 +38,13 @@
 
           <div style="text-align:center; padding-bottom:30px"><h1>{{ title }}</h1></div>
 
-          <el-form-item prop="price" label="价格："></el-form-item>
+          <el-form-item label="价格：">{{price}}</el-form-item>
           
-          <el-form-item size="mini" prop="remain" label="剩余："></el-form-item>
-          <el-form-item size="mini" prop="saleAmount" label="月销量："></el-form-item>
+          <el-form-item size="mini" label="剩余：">{{remain}}</el-form-item>
+          <el-form-item size="mini" label="月销量：">{{saleAmount}}</el-form-item>
 
           <el-form-item label="尺码">
-            <el-radio-group v-model="sizeForm.type">
+            <el-radio-group v-model="sizeForm.size">
               <el-radio-button label="S" name="type"></el-radio-button>
               <el-radio-button label="M" name="type"></el-radio-button>
               <el-radio-button label="L" name="type"></el-radio-button>
@@ -53,16 +53,22 @@
           </el-form-item>
 
           <el-form-item label="颜色">
-            <el-radio-group v-model="sizeForm.type">
+            <el-radio-group v-model="sizeForm.color">
               <el-radio-button label="黑色" name="type"></el-radio-button>
               <el-radio-button label="白色" name="type"></el-radio-button>
               <el-radio-button label="米色" name="type"></el-radio-button>
               <el-radio-button label="墨绿色" name="type"></el-radio-button>
             </el-radio-group>
           </el-form-item>
+          
+          <el-form-item label="数量">
+            <template>
+              <el-input-number v-model="num" controls-position="right" @change="handleChange" :min="1"></el-input-number>
+            </template>
+          </el-form-item>
 
           <el-form-item label="服务">
-            <el-radio-group v-model="sizeForm.resource" size="medium">
+            <el-radio-group v-model="sizeForm.serve" size="medium">
               <el-radio border label="直接付款"></el-radio>
               <el-radio border label="分期付款"></el-radio>
             </el-radio-group>
@@ -91,20 +97,23 @@
     export default {
     data() {
       return {
+        num:1,
         title:'title',
+        price:'1000',
+        remain:'1000000',
+        saleAmount:'1',
         sizeForm: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+          size: '',
+          color:'',
+          serve: '',
         }
+
       };
     },
     methods: {
+      handleChange(value) {
+        console.log(value);
+      },
       onSubmit() {
         console.log('submit!');
       }

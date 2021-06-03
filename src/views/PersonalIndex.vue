@@ -13,16 +13,10 @@
 
       <el-submenu index="2">
         <template slot="title"><i class="el-icon-menu"></i>收藏</template>
-        <!-- <el-menu-item-group>
-          <template slot="title"></template>
-          <el-menu-item index="2-1">选项1</el-menu-item>
-          <el-menu-item index="2-2">选项2</el-menu-item>
-        </el-menu-item-group> -->
         <el-menu-item-group>
           <el-menu-item index="2-3">收藏的商品</el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group index="2-4">
-          <!-- <template slot="title"></template> -->
           <el-menu-item index="2-4-1">收藏的店铺</el-menu-item>
         </el-menu-item-group>
         
@@ -86,26 +80,19 @@ export default {
     CorrectInfo,
   },
   data() {
-      const item = {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      };
       return {
         currentTabComponent: PersonalInfo
       }
   },
   methods:{
     toggleTab(tab) {
-      
-      // this.currentTabComponent = tab;   //tab为当前触发标签页的组件名
       if(tab == "PersonalInfo") {
-        this.currentTabComponent = PersonalInfo;
-        console.log(tab);
+        this.currentTabComponent = PersonalInfo;  //tab为当前触发标签页的组件名
+        // console.log(tab);
       }
       else if(tab=="CorrectInfo"){
         this.currentTabComponent = CorrectInfo;
-        console.log(tab);
+        // console.log(tab);
       }
     }
   }

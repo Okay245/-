@@ -4,22 +4,19 @@
        <el-main>
           <table class="el-table"  :data="tableData" stripe style="width: 100%">
           <!-- <i class="el-icon-user"></i> -->
-          <div class="el-table-row" prop="userName" label="用户名" width="180">用户名 :{{userName}}
+          <div class="el-table-row" label="用户名" >用户名 : {{userName}}
           </div>
-          <div class="el-table-row" prop="account" label="账号" width="180">账号 :
+          <div class="el-table-row" label="账号">账号 : {{account}}
           </div>
-          <div class="el-table-row" prop="consignee" label="收货人" width="180">收货人 :
+          <div class="el-table-row" label="收货人">收货人 : {{consignee}}
           </div>
-          <div class="el-table-row" prop="phoneNumber" label="手机号" width="180">手机号 :
+          <div class="el-table-row" label="手机号">手机号 : {{phoneNumber}}
           </div>
-          <div class="el-table-row" prop="address" label="收货地址" width="180">收货地址 :
+          <div class="el-table-row" label="收货地址">收货地址 : {{address}}
           </div>
           </table>
         </el-main>
-       <!-- <el-footer>
-        Footer
-       </el-footer> -->
-      
+  
   </el-container>
 </template>
 
@@ -27,14 +24,11 @@
   export default {
     data() {
       return {
-        tableData: [{ 
-          userName:'Tom'
-        },{ 
-          account:'135135135'
-        },{ 
-          consignee:'TT'
-        },{ 
-          phoneNumber:'1122334455'}]
+          userName:'Tom',
+          account:'135135135',
+          consignee:'TT',
+          phoneNumber:'1122334455',
+          address:'...',
       }
     }
   }
