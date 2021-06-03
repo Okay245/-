@@ -17,26 +17,19 @@ export default new Router({
                 import ('./views/login.vue'),
         },
         {
-            path: '/personalInfo',
-            component: () =>
-                import ('./views/PersonalInfo.vue')
-        }, {
-            path: '/correctInfo',
-            component: () =>
-                import ('./views/CorrectInfo.vue')
-        }, {
             path: '/personalIndex',
             component: () =>
                 import ('./views/PersonalIndex.vue')
-        }, {
-            path: '/good',
-            component: () =>
-                import ('./views/GoodInfo.vue')
         },
         {
             path: '/shoppingCart',
             component: () =>
                 import ('./views/ShoppingCart.vue')
+        },
+        {
+            path: '/goodInfo',
+            component: () =>
+                import ('./views/GoodInfo.vue')
         }
     ]
 })

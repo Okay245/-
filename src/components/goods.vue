@@ -1,5 +1,5 @@
 <template>
-  <div class="goods">
+  <div class="goods" @click="skipToDetails()">
     <div class="divimage">
       <img :src="picurl" class="image" />
     </div>
@@ -35,6 +35,11 @@ export default {
       currentDate: new Date().toDateString(),
     };
   },
+  methods:{
+    skipToDetails(){
+      this.$router.push("/goodInfo");
+    }
+  }
 };
 </script>
 
