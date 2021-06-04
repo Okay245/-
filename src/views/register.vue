@@ -45,10 +45,11 @@
 </template>
 
 <script>
+import { request } from "../network/request";
 export default {
   data() {
     let checkPwd = (rule, value, callback) => {
-      console.log(rule);
+      // console.log(rule);
       if (!value) {
         callback(new Error("确认密码不能为空!"));
       } else if (value != this.form.password) {
@@ -66,6 +67,7 @@ export default {
         password: "",
         pwdagain: "",
       },
+      //校验规则
       rules: {
         username: [
           { required: true, message: "用户名不能为空", trigger: "blur" },
@@ -80,24 +82,50 @@ export default {
     };
   },
   methods: {
+    //提交时校验
     onSubmit() {
       this.$refs["form"].validate((valid) => {
         if (valid) {
           console.log("成功");
-          console.log(this.form);
+          //校验成功时提交数据
+          this.registerPost();
         } else {
           console.log("校验失败");
         }
       });
     },
+    //清空当前表单信息
     clear() {
       let i = undefined;
       for (i in this.form) {
         this.form[i] = "";
       }
     },
+    //提交表单数据的方法
+    registerPost() {
+      console.log(this.form);
+      request({
+        url: "/user/register",
+        method: "post",
+        data: {
+          userName: this.form.username,
+          birthday: this.form.birthday,
+          password: this.form.password,
+          pwdagain: this.form.pwdagain,
+          gender: this.form.sex,
+        },
+      }).then(
+        (value) => {
+          console.log(value);
+        },
+        (reason) => {
+          console.log(reason);
+        }
+      );
+    },
   },
   created() {
+    //取消浏览器默认行为
     document.onselectstart = function () {
       return false;
     };

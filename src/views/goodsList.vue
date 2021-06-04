@@ -38,35 +38,20 @@ import goods from "../components/goods";
 import { request } from "../network/request";
 export default {
   data() {
-    let good = {
-      id: 1,
-      name: "汉堡包",
-      price: 10,
-      number: 100,
-      picurl:
-        "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
-    };
+    // let good = {
+    //   id: 1,
+    //   name: "汉堡包",
+    //   price: 10,
+    //   number: 100,
+    //   picurl:
+    //     "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",
+    // };
 
-    let good2 = {
-      id: 2,
-      name: "苹果12",
-      price: 1999,
-      number: 5000,
-      picurl:
-        "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/61454401f855cf5ed64747a6ac04bae5.jpg?thumb=1&w=200&h=200&f=webp&q=90",
-    };
-    let good3 = {
-      id: 3,
-      name: "女装",
-      price: 688,
-      number: 182,
-      picurl:
-        "https://img.alicdn.com/imgextra/i4/103981365/O1CN012Rep4q1LxDJQJWZ5H_!!0-saturn_solar.jpg_468x468q75.jpg_.webp",
-    };
     return {
-      goodslist: Array(10).fill(good),
-      goodslist2: Array(10).fill(good2),
-      goodslist3: Array(10).fill(good3),
+      // goodslist: Array(10).fill(good),
+      goodslist: new Array(),
+      goodslist2: new Array(),
+      goodslist3: new Array(),
     };
   },
   methods: {
@@ -82,18 +67,27 @@ export default {
     goods,
   },
   created: function () {
-    request({
-      url: "/home/multidata",
-      method: "get",
-    }).then(
-      (value) => {
-        // console.log(value.data);
-        this.goodslist1 = value.data;
-      },
-      (reason) => {
-        console.log(reason);
-      }
-    );
+    //首页请求数据
+    let getList = async (page) => {
+      return request({
+        url: "/good/findAll/" + page + "/10",
+        method: "get",
+      }).then(
+        (value) => {
+          // console.log(value.data.content);
+          return value.data.content;
+        },
+        (reason) => {
+          console.log(reason);
+        }
+      );
+    };
+    let post = async () => {
+      this.goodslist = await getList(0);
+      this.goodslist2 = await getList(1);
+      this.goodslist3 = await getList(2);
+    };
+    post();
   },
 };
 </script>

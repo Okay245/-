@@ -29,8 +29,8 @@
       <div class="intro">
         <span class="block">
           <el-carousel trigger="click" height="600px" style="width: 400px">
-            <el-carousel-item v-for="item in 4" :key="item">
-              <h3 class="small">{{ item }}</h3>
+            <el-carousel-item v-for="i in 4" :key="i">
+              <img :src="data.imageUrl" alt="加载中" />
             </el-carousel-item>
           </el-carousel>
         </span>
@@ -104,6 +104,7 @@
 </template>
 
 <script>
+import { request } from "../network/request";
 export default {
   data() {
     return {
@@ -111,6 +112,7 @@ export default {
         name: "加载中",
         price: 0,
         number: 0,
+        imageUrl: "",
       },
       activeIndex: "2",
       num: 1,
@@ -133,7 +135,14 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {
-      vm.data = vm.$route.params;
+      // console.log(vm.$route.query);
+      request({
+        url: "/good/goodInfo/" + vm.$route.query.id,
+        method: "get",
+      }).then((value) => {
+        // console.log(value.data);
+        vm.data = value.data;
+      });
     });
   },
 };

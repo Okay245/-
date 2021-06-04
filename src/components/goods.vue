@@ -1,11 +1,11 @@
 <template>
   <div class="goods">
     <div class="divimage">
-      <img :src="picurl" class="image" />
+      <img :src="imageUrl" class="image" />
     </div>
 
     <div class="content">
-      <h3>{{ name }}</h3>
+      <h3 class="name">{{ name }}</h3>
       <p>
         <span>剩余数量:{{ number }}</span>
       </p>
@@ -32,7 +32,7 @@ export default {
     name: String,
     price: Number,
     number: Number,
-    picurl: String,
+    imageUrl: String,
   },
   data() {
     return {
@@ -120,5 +120,10 @@ export default {
 .content .data {
   font-size: 10px;
   color: #777;
+}
+
+.name {
+  overflow: hidden;
+  padding: 0 10px;
 }
 </style>

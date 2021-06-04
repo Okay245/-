@@ -34,9 +34,11 @@
 
 <script>
 import register from "./register";
+import { request } from "../network/request";
 export default {
   data() {
     return {
+      //一些动画旋转参数
       lo_deg: 0,
       re_deg: 90,
       height: 0,
@@ -44,6 +46,7 @@ export default {
         username: "",
         password: "",
       },
+      //校验规则
       rules: {
         username: [
           { required: true, message: "用户名不能为空", trigger: "blur" },
@@ -60,11 +63,13 @@ export default {
       this.$refs["form"].validate((valid) => {
         if (valid) {
           console.log("成功");
+          this.loginPost();
         } else {
           console.log("校验失败");
         }
       });
     },
+    //跳转注册动画
     skipRegister() {
       let register = document.getElementById("register");
       let height = getComputedStyle(register, null)["height"];
@@ -74,6 +79,7 @@ export default {
       let login = document.getElementById("login");
       login.style.borderBottom = "none";
     },
+    //跳转登录动画
     skipLogin() {
       let login = document.getElementById("login");
       login.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
@@ -82,16 +88,35 @@ export default {
       this.lo_deg += 90;
       this.re_deg += 90;
     },
+    loginPost() {
+      request({
+        url: "/user/login",
+        method: "post",
+        data: {
+          userName: this.form.username,
+          password: this.form.password,
+        },
+      }).then(
+        (value) => {
+          console.log(value);
+        },
+        (reason) => {
+          console.log(reason);
+        }
+      );
+    },
   },
   components: {
     register,
   },
   created() {
+    //清除浏览器默认行为
     document.onselectstart = function () {
       return false;
     };
   },
   mounted() {
+    //通过js调整一些美化细节
     let login = this.$refs["login"];
     let height = getComputedStyle(login, null)["height"];
     this.height = parseInt(height) + 2 + 6;
