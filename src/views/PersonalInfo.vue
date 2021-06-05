@@ -3,14 +3,23 @@
     <el-main>
       <table class="el-table" :data="tableData" stripe style="width: 100%">
         <!-- <i class="el-icon-user"></i> -->
-        <div class="el-table-row" label="用户名">用户名 : {{ userName }}</div>
-        <div class="el-table-row" label="账号">账号 : {{ account }}</div>
-        <div class="el-table-row" label="收货人">收货人 : {{ consignee }}</div>
+        <div class="el-table-row" label="用户名">
+          用户名 : {{ tableData.userName }}
+        </div>
+        <div class="el-table-row" label="账号">
+          账号 : {{ tableData.account }}
+        </div>
+        <div class="el-table-row" label="性别">
+          性别 : {{ tableData.gender }}
+        </div>
         <div class="el-table-row" label="手机号">
-          手机号 : {{ phoneNumber }}
+          手机号 : {{ tableData.phoneNumber }}
+        </div>
+        <div class="el-table-row" label="生日">
+          生日 : {{ tableData.birthday }}
         </div>
         <div class="el-table-row" label="收货地址">
-          收货地址 : {{ address }}
+          收货地址 : {{ tableData.address }}
         </div>
       </table>
     </el-main>
@@ -19,14 +28,23 @@
 
 <script>
 export default {
+  props: {
+    tableData: {
+      type: Object,
+      default() {
+        return {
+          userName: "Tom",
+          account: 1,
+          gender: "f",
+          phoneNumber: "1122334455",
+          birthday: "2020 2 2",
+          address: "...",
+        };
+      },
+    },
+  },
   data() {
-    return {
-      userName: "Tom",
-      account: "135135135",
-      consignee: "TT",
-      phoneNumber: "1122334455",
-      address: "...",
-    };
+    return {};
   },
 };
 </script>
@@ -118,5 +136,6 @@ export default {
 .el-table-row {
   text-align: left;
   padding-left: 100px;
+  font-size: 20px;
 }
 </style>

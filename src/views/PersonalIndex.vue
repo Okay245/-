@@ -42,13 +42,13 @@
           </el-menu-item-group>
         </el-submenu>
 
-        <el-submenu index="3">
+        <el-submenu index="4">
           <template slot="title"
             ><i class="el-icon-setting"></i>购物车</template
           >
         </el-submenu>
 
-        <el-submenu index="3">
+        <el-submenu index="5">
           <template slot="title"><i class="el-icon-setting"></i>消息</template>
         </el-submenu>
       </el-menu>
@@ -81,7 +81,10 @@
       </el-header>
 
       <keep-alive>
-        <component v-bind:is="currentTabComponent"></component>
+        <component
+          v-bind:is="currentTabComponent"
+          :tableData="userData"
+        ></component>
       </keep-alive>
     </el-container>
   </el-container>
@@ -90,6 +93,7 @@
 <script>
 import PersonalInfo from "./PersonalInfo.vue";
 import CorrectInfo from "./CorrectInfo";
+import { request, reqnode } from "../network/request";
 
 export default {
   components: {
@@ -105,6 +109,14 @@ export default {
     };
     return {
       currentTabComponent: PersonalInfo,
+      userData: {
+        userName: "Tom33",
+        account: 1,
+        gender: "f",
+        phoneNumber: "1122334455",
+        birthday: "2020 2 2",
+        address: "...",
+      },
     };
   },
   methods: {
@@ -118,6 +130,32 @@ export default {
         console.log(tab);
       }
     },
+  },
+  created() {
+    // console.log(this.$root.uid);
+    reqnode({
+      url: "/getsession",
+      method: "get",
+    }).then((value) => {
+      // console.log(value);
+      if (value.data.status == 1) {
+        request({
+          url: "/user/userInfo/" + value.data.uid,
+          post: "get",
+        }).then((value) => {
+          // console.log(value.data);
+          (this.userData.userName = value.data.userName),
+            (this.userData.account = value.data.uid),
+            (this.userData.gender = value.data.gender),
+            (this.userData.phoneNumber = value.data.phoneNumber),
+            (this.userData.birthday = value.data.birthday),
+            (this.userData.address = value.data.address);
+        });
+      } else {
+        alert("请先登录");
+        this.$router.push("/login");
+      }
+    });
   },
 };
 </script>

@@ -30,7 +30,7 @@
         <span class="block">
           <el-carousel trigger="click" height="600px" style="width: 400px">
             <el-carousel-item v-for="i in 4" :key="i">
-              <img :src="data.imageUrl" alt="加载中" />
+              <img :src="data.imageUrl" alt="加载中" style="width: 100%" />
             </el-carousel-item>
           </el-carousel>
         </span>
@@ -88,7 +88,7 @@
 
             <el-form-item size="large">
               <el-button type="primary" @click="onSubmit">立即购买</el-button>
-              <el-button>加入购物车</el-button>
+              <el-button @click="addGood">加入购物车</el-button>
             </el-form-item>
           </el-form>
         </span>
@@ -104,11 +104,12 @@
 </template>
 
 <script>
-import { request } from "../network/request";
+import { request, reqnode } from "../network/request";
 export default {
   data() {
     return {
       data: {
+        id: 0,
         name: "加载中",
         price: 0,
         number: 0,
@@ -132,7 +133,37 @@ export default {
       console.log("submit!");
     },
     handleSelect() {},
+    addGood() {
+      reqnode({
+        url: "/getsession",
+        method: "get",
+      }).then((value) => {
+        if (value.data.status == 1) {
+          request({
+            url: "/good/addToCart/" + value.data.uid + "/" + this.num,
+            method: "post",
+            data: {
+              id: this.data.id,
+              name: this.data.name,
+              number: this.data.number,
+              price: this.data.price,
+              imageUrl: this.data.imageUrl,
+            },
+          }).then((value) => {
+            // console.log(value.data);
+            if (value.data == "success") {
+              alert("添加成功,请去购物车查看");
+            } else {
+              alert("添加失败");
+            }
+          });
+        } else {
+          alert("请先登录");
+        }
+      });
+    },
   },
+  //在路由刷新时回调
   beforeRouteEnter(to, from, next) {
     next((vm) => {
       // console.log(vm.$route.query);

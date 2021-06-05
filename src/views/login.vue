@@ -34,7 +34,7 @@
 
 <script>
 import register from "./register";
-import { request } from "../network/request";
+import { request, reqnode } from "../network/request";
 export default {
   data() {
     return {
@@ -88,6 +88,7 @@ export default {
       this.lo_deg += 90;
       this.re_deg += 90;
     },
+    //登录获取uid
     loginPost() {
       request({
         url: "/user/login",
@@ -98,7 +99,18 @@ export default {
         },
       }).then(
         (value) => {
-          console.log(value);
+          if (typeof value.data == "number") {
+            reqnode({
+              url: "/savesession",
+              method: "get",
+              params: {
+                uid: value.data,
+              },
+            }).then((value) => {
+              console.log(value);
+              this.$router.push("/personal");
+            });
+          }
         },
         (reason) => {
           console.log(reason);
