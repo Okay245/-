@@ -130,7 +130,33 @@ export default {
       console.log(value);
     },
     onSubmit() {
-      console.log("submit!");
+      reqnode({
+        url: "/getsession",
+        method: "get",
+      }).then((value) => {
+        if (value.data.status == 1) {
+          request({
+            url: "/good/buy/" + this.num,
+            method: "post",
+            data: {
+              id: this.data.id,
+              name: this.data.name,
+              number: this.data.number,
+              price: this.data.price,
+              imageUrl: this.data.imageUrl,
+            },
+          }).then((value) => {
+            console.log(value);
+            if (value.data == 0) {
+              alert("购买成功");
+            } else {
+              alert("购买失败,库存不足");
+            }
+          });
+        } else {
+          alert("请先登录");
+        }
+      });
     },
     handleSelect() {},
     addGood() {
@@ -150,11 +176,11 @@ export default {
               imageUrl: this.data.imageUrl,
             },
           }).then((value) => {
-            // console.log(value.data);
-            if (value.data == "success") {
+            console.log(value);
+            if (value.data == 0) {
               alert("添加成功,请去购物车查看");
             } else {
-              alert("添加失败");
+              alert("添加失败,库存不足");
             }
           });
         } else {

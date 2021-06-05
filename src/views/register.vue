@@ -14,8 +14,8 @@
       </el-form-item>
       <el-form-item label="性别" prop="sex">
         <el-radio-group v-model="form.sex">
-          <el-radio-button label="f">男</el-radio-button>
-          <el-radio-button label="m">女</el-radio-button>
+          <el-radio-button label="m">男</el-radio-button>
+          <el-radio-button label="f">女</el-radio-button>
           <el-radio-button label="s">保密</el-radio-button>
         </el-radio-group>
       </el-form-item>
@@ -117,6 +117,11 @@ export default {
       }).then(
         (value) => {
           console.log(value);
+          if (value.data == "success") {
+            alert("注册成功");
+          } else {
+            alert("注册失败");
+          }
         },
         (reason) => {
           console.log(reason);

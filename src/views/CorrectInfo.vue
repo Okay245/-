@@ -17,20 +17,22 @@
 
       <el-form-item label="性别" prop="sex">
         <el-select v-model="ruleForm.sex" placeholder="请选择性别">
-          <el-option label="男" value="male"></el-option>
-          <el-option label="女" value="female"></el-option>
-          <el-option label="保密" value="unknown"></el-option>
+          <el-option label="男" value="m"></el-option>
+          <el-option label="女" value="f"></el-option>
+          <el-option label="保密" value="s"></el-option>
         </el-select>
       </el-form-item>
 
       <el-form-item label="生日">
         <el-col :span="11">
-          <el-form-item prop="birthday" :required="false">
+          <el-form-item prop="birthday">
             <el-date-picker
               type="date"
               placeholder="选择日期"
               v-model="ruleForm.birthday"
               style="width: 100%"
+              format="yyyy年MM月dd日"
+              value-format="yyyy MM dd"
             ></el-date-picker>
           </el-form-item>
         </el-col>
@@ -44,32 +46,24 @@
         ></el-input>
       </el-form-item>
 
-      <!-- <el-form-item label="活动性质" prop="type">
-    <el-checkbox-group v-model="ruleForm.type">
-      <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-      <el-checkbox label="地推活动" name="type"></el-checkbox>
-      <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-      <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
-    </el-checkbox-group>
-  </el-form-item>
-
-  <el-form-item label="特殊资源" prop="resource">
-    <el-radio-group v-model="ruleForm.resource">
-      <el-radio label="线上品牌商赞助"></el-radio>
-      <el-radio label="线下场地免费"></el-radio>
-    </el-radio-group>
-  </el-form-item> -->
-
       <!-- 父子组件通信：子传父 -->
-      <el-form-item label="收货地址" prop="address" required>
-        <position class="position"></position>
+      <el-form-item label="收货地址" prop="address">
+        <position class="position" @change="setadd($event)"></position>
       </el-form-item>
 
-      <el-form-item label="详细地址" prop="DEaddress">
+      <el-form-item label="收货人" prop="consignee">
         <el-input
-          type="textarea"
-          v-model="ruleForm.DEaddress"
+          v-model="ruleForm.consignee"
           style="width: 80%"
+          placeholder="非必填"
+        ></el-input>
+      </el-form-item>
+
+      <el-form-item label="新密码" prop="newpass">
+        <el-input
+          v-model="ruleForm.newpass"
+          style="width: 80%"
+          placeholder="非必填"
         ></el-input>
       </el-form-item>
 
@@ -90,7 +84,7 @@
 <script>
 // 父子组件通信：子传父，引入子组件
 import position from "./positionChosing.vue";
-
+import { request, reqnode } from "../network/request";
 export default {
   components: {
     position,
@@ -102,31 +96,28 @@ export default {
         sex: "",
         birthday: "",
         phoneNumber: "",
-        default: false,
+        default: false, //非必
         address: "",
-        DEaddress: "",
+        consignee: "",
+        newpass: "",
       },
       rules: {
+        newpass: [
+          { required: false, message: "请输入用户名", trigger: "blur" },
+        ],
         name: [
           { required: true, message: "请输入用户名", trigger: "blur" },
-          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" },
+          // { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" },
         ],
-        sex: [{ required: false, message: "请选择性别", trigger: "change" }],
-        birthday: [
-          {
-            type: "date",
-            required: false,
-            message: "请选择日期",
-            trigger: "change",
-          },
-        ],
+        sex: [{ required: true, message: "请选择性别", trigger: "change" }],
+        birthday: [{ required: true, message: "请选择日期", trigger: "blur" }],
         phoneNumber: [
           { required: true, message: "请输入手机号", trigger: "blur" },
           { min: 11, max: 11, message: "请填写正确手机号", trigger: "blur" },
         ],
-        address: [{ type: "Arry", required: true, message: "请选择地址" }],
-        DEaddress: [
-          { required: true, message: "请填写详细地址", trigger: "blur" },
+        address: [{ required: true, message: "请选择地址" }],
+        consignee: [
+          { required: false, message: "请填写详细地址", trigger: "blur" },
         ],
       },
     };
@@ -135,7 +126,34 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert("submit!");
+          reqnode({
+            url: "/getsession",
+          }).then((value) => {
+            if (value.data.status == 1) {
+              request({
+                url: "/user/changeInfo/" + value.data.uid,
+                method: "post",
+                data: {
+                  userName: this.ruleForm.name,
+                  gender: this.ruleForm.sex,
+                  birthday: this.ruleForm.birthday,
+                  password: this.ruleForm.newpass,
+                  consignee: this.ruleForm.consignee,
+                  phoneNumber: this.ruleForm.phoneNumber,
+                  address: this.ruleForm.address,
+                },
+              }).then((value) => {
+                // console.log(value);
+                if (value.data == "success") {
+                  alert("修改成功,请刷新查看");
+                } else {
+                  alert("修改失败,请重试");
+                }
+              });
+            } else {
+              alert("未登录");
+            }
+          });
         } else {
           console.log("error submit!!");
           return false;
@@ -144,6 +162,11 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    setadd(value) {
+      let address = value.join("/");
+      this.ruleForm.address = address;
+      // console.log(address);
     },
   },
 };

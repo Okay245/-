@@ -99,6 +99,7 @@ export default {
         },
       }).then(
         (value) => {
+          console.log(value.data);
           if (typeof value.data == "number") {
             reqnode({
               url: "/savesession",
@@ -110,6 +111,8 @@ export default {
               console.log(value);
               this.$router.push("/personal");
             });
+          } else {
+            alert("密码错误或用户不存在");
           }
         },
         (reason) => {

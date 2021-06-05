@@ -12,6 +12,7 @@
           <el-menu-item index="1-4" @click="toggleTab('CorrectInfo')"
             >修改信息</el-menu-item
           >
+          <el-menu-item index="1-5" @click="unlogin">退出登录</el-menu-item>
           <!-- 每一个tab绑定一个点击事件，分别传入更改的组件名为参数 -->
         </el-submenu>
 
@@ -45,6 +46,9 @@
         <el-submenu index="4">
           <template slot="title"
             ><i class="el-icon-setting"></i>购物车</template
+          >
+          <el-menu-item index="4-1" @click="toggleTab('ShoppingCart')"
+            >购物车</el-menu-item
           >
         </el-submenu>
 
@@ -93,6 +97,7 @@
 <script>
 import PersonalInfo from "./PersonalInfo.vue";
 import CorrectInfo from "./CorrectInfo";
+import ShoppingCart from "./ShoppingCart.vue";
 import { request, reqnode } from "../network/request";
 
 export default {
@@ -100,6 +105,7 @@ export default {
     //声明子组件
     PersonalInfo,
     CorrectInfo,
+    ShoppingCart,
   },
   data() {
     const item = {
@@ -128,7 +134,20 @@ export default {
       } else if (tab == "CorrectInfo") {
         this.currentTabComponent = CorrectInfo;
         console.log(tab);
+      } else if (tab == "ShoppingCart") {
+        this.currentTabComponent = ShoppingCart;
+        console.log(tab);
       }
+    },
+    unlogin() {
+      reqnode({
+        url: "/delsession",
+        method: "get",
+      }).then((value) => {
+        if (value.data.status == 1) {
+          this.$router.push("/");
+        }
+      });
     },
   },
   created() {

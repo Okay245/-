@@ -27,7 +27,7 @@
             <input
               type="text"
               class="amountSpan"
-              v-model="scope.row.num"
+              v-model="scope.row.amount"
               :min="0"
             />
             <!-- scope指定范围，使用该范围内的num -->
@@ -60,13 +60,14 @@
     <el-footer>
       <div></div>
       <div>
-        <el-button type="info" plain>结算</el-button>
+        <el-button type="info" plain @click="js">结算</el-button>
       </div>
     </el-footer>
   </el-container>
 </template>
 
 <script>
+import { request, reqnode } from "../network/request";
 export default {
   methods: {
     deleteRow(index, rows) {
@@ -77,96 +78,45 @@ export default {
       console.log(value);
     },
     add(row) {
-      row.num++;
+      row.amount++;
     },
     reduce(row) {
-      if (row.num) {
-        row.num--;
+      if (row.amount) {
+        row.amount--;
       }
     },
     checkList() {},
+    js() {
+      alert("结算成功");
+    },
   },
   data() {
     return {
       num: 1,
       checked: true,
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          num: 1,
-          price: "上海",
-          amount: "普陀区",
-          attribute: 200333,
-          shop: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          num: 2,
-          price: "上海",
-          amount: "普陀区",
-          attribute: 200333,
-          shop: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          num: 3,
-          price: "上海",
-          amount: "普陀区",
-          attribute: 200833,
-          shop: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          num: 1,
-          price: "上海",
-          amount: "普陀区",
-          attribute: 200533,
-          shop: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          num: 1,
-          price: "上海",
-          amount: "普陀区",
-          attribute: 20333,
-          shop: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          num: 1,
-          price: "上海",
-          amount: "普陀区",
-          attribute: 20333,
-          shop: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          num: 1,
-          price: "上海",
-          amount: "普陀区",
-          attribute: 20033,
-          shop: "上海市普陀区金沙江路 1518 弄",
-        },
-      ],
+      tableData: new Array(),
     };
   },
-  //mounted() {
-  // var reduce = document.getElementsByClassName(".reduce");
-  // var add = document.getElementsByClassName(".add");
-  // reduce.onclick = function () {
-  //   this.num -= 1;
-  // };
-  // add.onclick = function () {
-  //   this.num += 1;
-  // };
-  //},
+  created() {
+    reqnode({
+      url: "/getsession",
+      method: "get",
+    }).then((value) => {
+      // console.log(value);
+      if (value.data.status == 1) {
+        request({
+          url: "/cart/showGood/" + value.data.uid,
+          post: "get",
+        }).then((value) => {
+          console.log(value.data);
+          this.tableData = value.data;
+        });
+      } else {
+        alert("请先登录");
+        this.$router.push("/login");
+      }
+    });
+  },
 };
 </script>
 

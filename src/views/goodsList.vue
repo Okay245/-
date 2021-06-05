@@ -6,7 +6,7 @@
       <span class="t2">More<i class="el-icon-arrow-right"></i></span>
     </h3>
     <ul class="list clearfix" clipContent="false">
-      <li v-for="(info, i) in goodslist" :key="i">
+      <li v-for="(info, i) in goodsLists[0]" :key="i">
         <goods :style="{ marginRight: wrap(i + 1) }" v-bind="info"></goods>
       </li>
     </ul>
@@ -16,7 +16,7 @@
       <span class="t2">More<i class="el-icon-arrow-right"></i></span>
     </h3>
     <ul class="list clearfix" clipContent="false">
-      <li v-for="(info2, i) in goodslist2" :key="i">
+      <li v-for="(info2, i) in goodsLists[1]" :key="i">
         <goods :style="{ marginRight: wrap(i + 1) }" v-bind="info2"></goods>
       </li>
     </ul>
@@ -26,7 +26,7 @@
       <span class="t2">More<i class="el-icon-arrow-right"></i></span>
     </h3>
     <ul class="list clearfix" clipContent="false">
-      <li v-for="(info3, i) in goodslist3" :key="i">
+      <li v-for="(info3, i) in goodsLists[2]" :key="i">
         <goods :style="{ marginRight: wrap(i + 1) }" v-bind="info3"></goods>
       </li>
     </ul>
@@ -49,9 +49,7 @@ export default {
 
     return {
       // goodslist: Array(10).fill(good),
-      goodslist: new Array(),
-      goodslist2: new Array(),
-      goodslist3: new Array(),
+      goodsLists: new Array(3),
     };
   },
   methods: {
@@ -68,6 +66,7 @@ export default {
   },
   created: function () {
     //首页请求数据
+    let newList = new Array(3);
     let getList = async (page) => {
       return request({
         url: "/good/findAll/" + page + "/10",
@@ -82,12 +81,12 @@ export default {
         }
       );
     };
-    let post = async () => {
-      this.goodslist = await getList(0);
-      this.goodslist2 = await getList(1);
-      this.goodslist3 = await getList(2);
-    };
-    post();
+    (async () => {
+      for (let i = 0; i < this.goodsLists.length; i++) {
+        newList[i] = await getList(i);
+      }
+      this.goodsLists = newList;
+    })();
   },
 };
 </script>

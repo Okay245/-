@@ -7,12 +7,7 @@
       </ul>
     </div>
     <div class="navtoo">
-      <el-menu
-        :default-active="activeIndex"
-        mode="horizontal"
-        class="myheader"
-        router
-      >
+      <el-menu :default-active="activeIndex" mode="horizontal" class="myheader">
         <el-image
           style="
             float: left;
@@ -37,7 +32,10 @@
           >免费注册</el-menu-item
         >
 
-        <el-menu-item index="/login" :style="{ float: 'right' }"
+        <el-menu-item
+          index="/logintoo"
+          :style="{ float: 'right' }"
+          @click="skipLogin"
           ><el-avatar size="medium" :src="circleUrl"></el-avatar
         ></el-menu-item>
       </el-menu>
@@ -46,6 +44,7 @@
 </template>
 
 <script>
+import { reqnode } from "../network/request";
 export default {
   data() {
     return {
@@ -55,15 +54,23 @@ export default {
       squareUrl:
         "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
       sizeList: ["large", "medium", "small"],
-      url:
-        "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
+      url: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg",
       search: "",
     };
   },
   methods: {
-    // skipLogin() {
-    //   this.$router.push("/login");
-    // },
+    skipLogin() {
+      reqnode({
+        url: "/getsession",
+        method: "get",
+      }).then((value) => {
+        if (value.data.status == 1) {
+          this.$router.push("/personal");
+        } else {
+          this.$router.push("/login");
+        }
+      });
+    },
     skipToCart() {
       this.$router.push("/shoppingcart");
     },
