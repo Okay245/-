@@ -5,7 +5,7 @@
       <el-menu :default-openeds="['1']">
         <!-- 默认打开的导航栏 -->
         <el-submenu index="1">
-          <template slot="title"><i class="el-icon-message"></i>我</template>
+          <template slot="title"><i class="el-icon-user"></i>我</template>
           <el-menu-item index="1-3" @click="toggleTab('PersonalInfo')"
             >个人信息</el-menu-item
           >
@@ -17,7 +17,7 @@
         </el-submenu>
 
         <el-submenu index="2">
-          <template slot="title"><i class="el-icon-menu"></i>收藏</template>
+          <template slot="title"><i class="el-icon-star-off"></i>收藏</template>
           <!-- <el-menu-item-group>
           <template slot="title"></template>
           <el-menu-item index="2-1">选项1</el-menu-item>
@@ -33,7 +33,7 @@
         </el-submenu>
 
         <el-submenu index="3">
-          <template slot="title"><i class="el-icon-setting"></i>历史</template>
+          <template slot="title"><i class="el-icon-time"></i>历史</template>
           <el-menu-item-group>
             <el-menu-item index="2-3">买过</el-menu-item>
           </el-menu-item-group>
@@ -45,7 +45,7 @@
 
         <el-submenu index="4">
           <template slot="title"
-            ><i class="el-icon-setting"></i>购物车</template
+            ><i class="el-icon-shopping-cart-1"></i>购物车</template
           >
           <el-menu-item index="4-1" @click="toggleTab('ShoppingCart')"
             >购物车</el-menu-item
@@ -53,7 +53,7 @@
         </el-submenu>
 
         <el-submenu index="5">
-          <template slot="title"><i class="el-icon-setting"></i>消息</template>
+          <template slot="title"><i class="el-icon-message"></i>消息</template>
         </el-submenu>
       </el-menu>
     </el-aside>
@@ -80,7 +80,7 @@
               <el-dropdown-item>删除</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span>王虎</span>
+          <span>{{userData.userName}}</span>
         </span>
       </el-header>
 
@@ -108,11 +108,6 @@ export default {
     ShoppingCart,
   },
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄",
-    };
     return {
       currentTabComponent: PersonalInfo,
       userData: {

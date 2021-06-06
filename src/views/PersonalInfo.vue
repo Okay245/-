@@ -103,7 +103,7 @@ export default {
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 120px;
+  line-height: 100px;
 }
 
 /* .el-table {
