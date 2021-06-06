@@ -5,12 +5,17 @@
 npm install
 ```
 
-### 运行测试
+### VUE运行测试
 ```
-npm run serve
+npm run serve(在项目中)
 ```
 
-### 编译打包(目前貌似有点小问题)
+### node服务器运行测试(另开一个终端)
+```
+node app.js(在项目的nodejs文件夹中)
+```
+
+### 编译打包
 ```
 npm run build
 ```

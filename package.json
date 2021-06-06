@@ -10,6 +10,9 @@
     "axios": "^0.21.1",
     "core-js": "^2.6.5",
     "element-ui": "^2.15.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "morgan": "^1.10.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
   },
