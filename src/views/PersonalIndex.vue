@@ -68,17 +68,26 @@
           height: 100px;
         "
       >
+      <span class="el-icon-s-home"
+        @click="skipToHome()"
+        style="position:absolute;
+          left:50px;
+          line-height:100px;
+          font-size:30px;
+          color:white;
+          "></span>
+
         <span style="color: grey; font-size: 40px; line-height: 100px"
           >个人中心</span
         >
         <span style="position: absolute; right: 50px; line-height: 100px">
           <el-dropdown>
             <i class="el-icon-user" style="margin-right: 15px"></i>
-            <el-dropdown-menu slot="dropdown">
+            <!-- <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>查看</el-dropdown-item>
               <el-dropdown-item>新增</el-dropdown-item>
               <el-dropdown-item>删除</el-dropdown-item>
-            </el-dropdown-menu>
+            </el-dropdown-menu> -->
           </el-dropdown>
           <span>{{userData.userName}}</span>
         </span>
@@ -121,6 +130,9 @@ export default {
     };
   },
   methods: {
+    skipToHome() {
+      this.$router.push("/");
+    },
     toggleTab(tab) {
       // this.currentTabComponent = tab;   //tab为当前触发标签页的组件名
       if (tab == "PersonalInfo") {
